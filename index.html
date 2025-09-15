@@ -1,185 +1,103 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angela's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Angela Martinez</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <h1>Welcome to Angela's Space</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- HERO SECTION over grid wallpaper -->
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">Angela Martinez</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#school">School</a></li>
+        <li><a href="#projects">Projects</a></li>
+      </ul>
+    </nav>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Angela, a passionate web developer.</p>
+    <!-- Rounded rectangle hero card in soft light color -->
+    <div class="hero-card">
+      <h1><span id="typed-text" class="typed-highlight"></span><span class="cursor">|</span></h1>
+      <h2>
+        I am a Computer Science Senior at the University of Texas at El Paso,
+        majoring in Computer Science Engineering with a minor in Mathematics.
+      </h2>
+      <p>I'm fascinated by large-scale, high-impact products.</p>
+
+      <a class="cta-btn" href="mailto:agmartinez9@miners.utep.edu">✉️ Say hi!</a>
+    </div>
+  </header>
+
+  <!-- Three-card grid (reveals on scroll) -->
+  <main class="wrap">
+    <section id="about" class="note note--blue reveal-up">
+      <h2>About Me</h2>
+      <p>
+        I’m currently a Senior Computer Science Engineering student. My focus includes AI/ML,
+        software engineering, and cybersecurity. I love building practical tools and learning at speed.
+      </p>
     </section>
 
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Here are some of my recent projects:</p>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
+    <section id="school" class="note note--yellow reveal-up">
+      <h2>School</h2>
+      <ul>
+        <li><strong>University:</strong> UTEP</li>
+        <li><strong>Major:</strong> Computer Science Engineering</li>
+        <li><strong>Minor:</strong> Mathematics</li>
+        <li><strong>Status:</strong> Senior</li>
+      </ul>
     </section>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out through my social media!</p>
+    <section id="projects" class="note note--pink reveal-up">
+      <h2>Projects</h2>
+      <ul>
+        <li>FuzzChain — DoD-oriented API fuzzing tool</li>
+        <li>TASAS — Armis/Tenable automation & dashboards</li>
+        <li>AI Studio — data/ML portfolio</li>
+      </ul>
     </section>
+  </main>
 
-    <footer>
-        <p>&copy; 2024 Angela. All Rights Reserved.</p>
-    </footer>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Angela Martinez</p>
+  </footer>
 
-    <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angela's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Angela's Space</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <!-- Scripts -->
+  <script>
+    // Typewriter effect
+    const text = "hello, Angela here";
+    const typedTextEl = document.getElementById("typed-text");
+    let i = 0;
+    function typeEffect() {
+      if (i < text.length) {
+        typedTextEl.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 100); // typing speed (ms)
+      }
+    }
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Angela, a passionate web developer.</p>
-    </section>
+    // Reveal-on-scroll for cards
+    function setupReveals() {
+      const items = document.querySelectorAll(".reveal-up");
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            obs.unobserve(e.target); // animate once
+          }
+        });
+      }, { threshold: 0.18 });
+      items.forEach(el => obs.observe(el));
+    }
 
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Here are some of my recent projects:</p>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out through my social media!</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Angela. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angela's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Angela's Space</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Angela, a passionate web developer.</p>
-    </section>
-
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Here are some of my recent projects:</p>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out through my social media!</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Angela. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Angela's Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Welcome to Angela's Space</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hi! I'm Angela, a passionate web developer.</p>
-    </section>
-
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p>Here are some of my recent projects:</p>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out through my social media!</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Angela. All Rights Reserved.</p>
-    </footer>
-
-    <script src="script.js"></script>
+    document.addEventListener("DOMContentLoaded", () => {
+      typeEffect();
+      setupReveals();
+      document.getElementById("year").textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>

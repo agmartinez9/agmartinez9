@@ -1,48 +1,164 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    color: #333;
+/* -------- Base + GRID WALLPAPER -------- */
+:root {
+  --accent: #2bbf97;     /* button accent */
+  --ink: #202427;        /* dark text on light card */
+  --muted: #5e6a72;
+  --card: #F2F1F1;       /* soft light rounded-rectangle color */
+
+  /* slightly deeper pastels so white text stays readable */
+  --blue:   #9cc6ff;     /* soft blue */
+  --yellow: #ffe08a;     /* soft yellow */
+  --pink:   #ffb5c1;     /* soft pink */
 }
 
-header {
-    background: #007bff;
-    color: white;
-    padding: 10px 0;
-    text-align: center;
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
+
+/* Full-screen grid wallpaper (put grid.jpg next to these files) */
+body{
+  color: #f0f0f0; /* default text over the grid; hero card overrides */
+  background: url("grid.jpg") center/cover no-repeat fixed;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+/* -------- Navbar (transparent over grid) -------- */
+.navbar{
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+}
+.logo{ font-weight: 700; font-size: 1.1rem; }
+.nav-links{ list-style: none; margin: 0; padding: 0; }
+.nav-links li{ display: inline; margin-left: 18px; }
+.nav-links a{ color: #ffffff; text-decoration: none; font-weight: 600; }
+.nav-links a:hover{ text-decoration: underline; }
+
+/* -------- Hero layout (tight spacing) -------- */
+.hero{
+  min-height: 86vh;
+  display: grid;
+  place-items: center;
+  padding: 100px 16px 20px; /* reduced bottom pad to remove gap */
 }
 
-nav ul li {
-    display: inline;
-    margin: 0 15px;
+/* -------- Rounded rectangle hero card -------- */
+.hero-card{
+  width: min(860px, 92vw);
+  background: var(--card);
+  color: var(--ink);
+  border-radius: 20px;
+  padding: clamp(24px, 4vw, 48px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.28), 0 1px 0 rgba(255,255,255,.4) inset;
+  border: 1px solid rgba(0,0,0,.06);
+  text-align: center;
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
+/* Hero headings */
+.hero-card h1{
+  margin: 0 0 10px 0;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.hero-card h2{
+  margin: 6px 0 8px 0;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  color: var(--muted);
+}
+.hero-card p{
+  margin: 6px 0 22px 0;
+  color: #394149;
 }
 
-section {
-    padding: 20px;
-    margin: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Type cursor + typed highlight */
+.cursor{
+  display: inline-block;
+  margin-left: 4px;
+  width: 10px;
+  color: #6aa6ff;
+  animation: blink 1s steps(2, start) infinite;
+}
+@keyframes blink{ to{ visibility: hidden; } }
+
+.typed-highlight {
+  color: #3ba9f4; /* light blue typed text */
+  font-weight: 800;
 }
 
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #007bff;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+/* CTA button on light card */
+.cta-btn{
+  display: inline-block;
+  padding: 12px 26px;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 10px;
+  transition: .18s ease;
+}
+.cta-btn:hover{
+  background: var(--accent);
+  color: white;
+}
+
+/* -------- 3-card grid (About / School / Projects) -------- */
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto 60px;     /* no top margin to close the gap */
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Sticky-note cards (white text + reveal animation) */
+.note {
+  padding: 26px 24px;
+  border-radius: 16px;
+  box-shadow: 2px 4px 12px rgba(0,0,0,.18);
+  text-align: left;
+  color: #ffffff;                         /* white text on cards */
+  text-shadow: 0 1px 2px rgba(0,0,0,.25); /* improve readability */
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.note:hover {
+  transform: translateY(-6px);
+  box-shadow: 4px 8px 18px rgba(0,0,0,.22);
+}
+
+/* Card headings and lists in white */
+.note h2 { margin: 0 0 10px 0; font-size: 1.3rem; color: #ffffff; }
+.note p, .note li, .note strong { color: #ffffff; }
+.note ul { margin: 0; padding-left: 20px; }
+
+/* Pastel backgrounds (a bit deeper so white text passes contrast) */
+.note--blue   { background: var(--blue); }
+.note--yellow { background: var(--yellow); }
+.note--pink   { background: var(--pink); }
+
+/* -------- Reveal-on-scroll animation -------- */
+.reveal-up { 
+  opacity: 0; 
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.reveal-up.visible { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+/* -------- Footer -------- */
+.site-footer{
+  text-align:center;
+  padding:24px 12px;
+  color:#e5e7eb;
+  font-size:.9rem;
 }
